@@ -1,0 +1,2280 @@
+/* ====================================
+   RESET
+==================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family: "DM Sans", sans-serif;
+
+    background: #fffaf7;
+
+    color: #4c3838;
+
+    overflow-x: hidden;
+
+}
+
+
+button {
+
+    font-family: inherit;
+
+}
+
+
+.hidden {
+
+    display: none;
+
+}
+
+
+
+/* ====================================
+   TEXT
+==================================== */
+
+h1,
+h2,
+h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+}
+
+
+h1 {
+
+    font-size: clamp(3rem, 13vw, 5rem);
+
+    font-weight: 600;
+
+    line-height: 0.95;
+
+}
+
+
+h1 span {
+
+    color: #b76272;
+
+}
+
+
+h2 {
+
+    font-size: clamp(2.5rem, 11vw, 4.5rem);
+
+    font-weight: 600;
+
+    line-height: 1;
+
+}
+
+
+.tiny-heading {
+
+    letter-spacing: 3px;
+
+    font-size: 0.68rem;
+
+    font-weight: 500;
+
+    color: #b98289;
+
+    margin-bottom: 20px;
+
+}
+
+
+.script-text {
+
+    margin-top: 16px;
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: 2rem;
+
+    color: #ba7280;
+
+}
+
+
+.script-large {
+
+    margin-top: 10px;
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: clamp(2rem, 9vw, 3rem);
+
+    color: #b75f70;
+
+}
+
+
+.message-text {
+
+    max-width: 570px;
+
+    margin: auto;
+
+    line-height: 1.9;
+
+    font-size: 0.96rem;
+
+    color: #6f5959;
+
+}
+
+
+.section-subtitle {
+
+    margin-top: 14px;
+
+    color: #957a7e;
+
+    font-size: 0.9rem;
+
+}
+
+
+
+/* ====================================
+   OPENING SCREEN
+==================================== */
+
+.welcome-screen {
+
+    width: 100%;
+
+    min-height: 100svh;
+
+    padding: 60px 25px 45px;
+
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    text-align: center;
+
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            #ffe8eb,
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            #ffe9dc,
+            transparent 45%
+        ),
+
+        #fffaf7;
+
+
+    transition:
+
+        opacity 0.8s ease,
+
+        transform 0.8s ease;
+
+}
+
+
+.welcome-screen.opened {
+
+    opacity: 0;
+
+    transform: scale(1.04);
+
+    pointer-events: none;
+
+}
+
+
+
+/* ====================================
+   GIF
+==================================== */
+
+.cute-image {
+
+    width: 120px;
+
+    height: 120px;
+
+
+    margin:
+
+        35px 0
+
+        20px;
+
+
+    border-radius: 50%;
+
+
+    background: white;
+
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    box-shadow:
+
+        0 10px 35px
+
+        rgba(147, 93, 103, 0.12);
+
+
+    overflow: hidden;
+
+}
+
+
+.cute-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.waiting-text {
+
+    font-size: 0.85rem;
+
+    margin-top: 5px;
+
+    margin-bottom: 25px;
+
+    color: #80686b;
+
+}
+
+
+
+/* ====================================
+   ENVELOPE
+==================================== */
+
+.envelope-container {
+
+    width: 180px;
+
+    height: 130px;
+
+
+    cursor: pointer;
+
+
+    animation:
+
+        floatEnvelope
+
+        2.8s
+
+        ease-in-out
+
+        infinite;
+
+}
+
+
+.envelope {
+
+    width: 180px;
+
+    height: 120px;
+
+    position: relative;
+
+}
+
+
+.envelope-back {
+
+    position: absolute;
+
+    bottom: 0;
+
+
+    width: 180px;
+
+    height: 110px;
+
+
+    background:
+
+        #f0a4ad;
+
+
+    border-radius: 7px;
+
+}
+
+
+.envelope-front {
+
+    position: absolute;
+
+    bottom: 0;
+
+
+    width: 0;
+
+    height: 0;
+
+
+    border-left:
+
+        90px solid #e98f9b;
+
+
+    border-right:
+
+        90px solid #e98f9b;
+
+
+    border-top:
+
+        55px solid transparent;
+
+
+    border-bottom:
+
+        55px solid #e98f9b;
+
+
+    z-index: 4;
+
+}
+
+
+.envelope-flap {
+
+    position: absolute;
+
+    top: 10px;
+
+
+    width: 0;
+
+    height: 0;
+
+
+    border-left:
+
+        90px solid transparent;
+
+
+    border-right:
+
+        90px solid transparent;
+
+
+    border-top:
+
+        70px solid #f7b3bb;
+
+
+    transform-origin: top;
+
+
+    transition:
+
+        transform 0.8s ease;
+
+
+    z-index: 5;
+
+}
+
+
+.letter-preview {
+
+    position: absolute;
+
+
+    width: 145px;
+
+    height: 85px;
+
+
+    background:
+
+        #fffaf7;
+
+
+    left: 18px;
+
+    bottom: 12px;
+
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    font-size: 2rem;
+
+    color: #c26777;
+
+
+    transition:
+
+        transform 0.9s ease;
+
+
+    z-index: 2;
+
+}
+
+
+.envelope.open
+.envelope-flap {
+
+    transform:
+
+        rotateX(180deg);
+
+
+    z-index: 1;
+
+}
+
+
+.envelope.open
+.letter-preview {
+
+    transform:
+
+        translateY(-55px);
+
+}
+
+
+.tap-text {
+
+    margin-top: 17px;
+
+
+    font-family:
+
+        "Dancing Script",
+
+        cursive;
+
+
+    color: #b16371;
+
+
+    font-size: 1.2rem;
+
+}
+
+
+@keyframes floatEnvelope {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-8px);
+
+    }
+
+}
+
+
+
+/* ====================================
+   SECTIONS
+==================================== */
+
+.main-content {
+
+    width: 100%;
+
+}
+
+
+.section {
+
+    min-height:
+
+        95svh;
+
+
+    padding:
+
+        100px 24px;
+
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    text-align: center;
+
+}
+
+
+.section:nth-child(even) {
+
+    background:
+
+        #fff4f2;
+
+}
+
+
+.emoji-circle {
+
+    width: 85px;
+
+    height: 85px;
+
+
+    border-radius: 50%;
+
+
+    background:
+
+        #ffe2e4;
+
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    font-size: 2.5rem;
+
+
+    margin-bottom:
+
+        35px;
+
+
+    box-shadow:
+
+        0 8px 30px
+
+        rgba(133, 81, 91, 0.12);
+
+}
+
+
+
+/* ====================================
+   DIVIDER
+==================================== */
+
+.divider {
+
+    width: 220px;
+
+
+    margin:
+
+        30px auto;
+
+
+    display: flex;
+
+    align-items: center;
+
+
+    gap: 14px;
+
+
+    color: #bb6978;
+
+}
+
+
+.divider span {
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+
+        #e0b8bd;
+
+}
+
+
+
+/* ====================================
+   SCROLL ANIMATION
+==================================== */
+
+.reveal {
+
+    opacity: 0;
+
+
+    transform:
+
+        translateY(35px);
+
+
+    transition:
+
+        opacity 0.9s ease,
+
+        transform 0.9s ease;
+
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+
+    transform:
+
+        translateY(0);
+
+}
+
+
+
+/* ====================================
+   MUSIC PLAYER
+==================================== */
+
+.music-card {
+
+    width:
+
+        min(100%, 480px);
+
+
+    margin-top:
+
+        45px;
+
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
+
+
+    border:
+
+        1px solid
+
+        rgba(
+            214,
+            160,
+            169,
+            0.3
+        );
+
+
+    border-radius:
+
+        25px;
+
+
+    padding:
+
+        24px;
+
+
+    display:
+
+        flex;
+
+
+    align-items:
+
+        center;
+
+
+    gap:
+
+        20px;
+
+
+    box-shadow:
+
+        0 15px 45px
+
+        rgba(
+            125,
+            78,
+            88,
+            0.09
+        );
+
+}
+
+
+.play-button {
+
+    width:
+
+        57px;
+
+    height:
+
+        57px;
+
+    min-width:
+
+        57px;
+
+
+    border-radius:
+
+        50%;
+
+
+    border:
+
+        none;
+
+
+    background:
+
+        #c9707f;
+
+
+    color:
+
+        white;
+
+
+    font-size:
+
+        1.2rem;
+
+
+    cursor:
+
+        pointer;
+
+
+    transition:
+
+        transform 0.2s;
+
+}
+
+
+.play-button:hover {
+
+    transform:
+
+        scale(1.05);
+
+}
+
+
+.music-info {
+
+    flex: 1;
+
+    text-align:
+
+        left;
+
+}
+
+
+.song-title {
+
+    font-family:
+
+        "Cormorant Garamond",
+
+        serif;
+
+
+    font-weight:
+
+        600;
+
+
+    font-size:
+
+        1.25rem;
+
+
+    margin-bottom:
+
+        13px;
+
+}
+
+
+.progress-container {
+
+    height:
+
+        5px;
+
+
+    background:
+
+        #ead8da;
+
+
+    border-radius:
+
+        20px;
+
+
+    overflow:
+
+        hidden;
+
+
+    cursor:
+
+        pointer;
+
+}
+
+
+.progress {
+
+    height:
+
+        100%;
+
+
+    width:
+
+        0;
+
+
+    background:
+
+        #bd6877;
+
+}
+
+
+.time-row {
+
+    margin-top:
+
+        8px;
+
+
+    display:
+
+        flex;
+
+
+    justify-content:
+
+        space-between;
+
+
+    font-size:
+
+        0.68rem;
+
+
+    color:
+
+        #9d8588;
+
+}
+
+
+.little-note {
+
+    margin-top:
+
+        20px;
+
+
+    font-family:
+
+        "Dancing Script",
+
+        cursive;
+
+
+    font-size:
+
+        1.3rem;
+
+
+    color:
+
+        #a95d6b;
+
+
+    line-height:
+
+        1.6;
+
+}
+
+
+
+/* ====================================
+   PHOTO ALBUM
+==================================== */
+
+.carousel {
+
+    margin-top:
+
+        45px;
+
+
+    display:
+
+        flex;
+
+
+    align-items:
+
+        center;
+
+
+    justify-content:
+
+        center;
+
+
+    width:
+
+        100%;
+
+
+    gap:
+
+        12px;
+
+}
+
+
+.polaroid {
+
+    width:
+
+        min(75vw, 340px);
+
+
+    background:
+
+        white;
+
+
+    padding:
+
+        13px
+
+        13px
+
+        24px;
+
+
+    box-shadow:
+
+        0 18px 45px
+
+        rgba(
+            97,
+            68,
+            70,
+            0.16
+        );
+
+
+    transform:
+
+        rotate(-1deg);
+
+
+    transition:
+
+        opacity 0.25s,
+
+        transform 0.3s;
+
+}
+
+
+.polaroid.changing {
+
+    opacity:
+
+        0;
+
+
+    transform:
+
+        scale(0.96);
+
+}
+
+
+.polaroid img {
+
+    width:
+
+        100%;
+
+
+    height:
+
+        360px;
+
+
+    object-fit:
+
+        cover;
+
+}
+
+
+.polaroid-text {
+
+    padding:
+
+        18px
+
+        10px
+
+        0;
+
+}
+
+
+.memory-number {
+
+    font-size:
+
+        0.65rem;
+
+
+    letter-spacing:
+
+        2px;
+
+
+    color:
+
+        #ba7580;
+
+
+    margin-bottom:
+
+        8px;
+
+}
+
+
+.polaroid-text h3 {
+
+    font-size:
+
+        1.6rem;
+
+
+    margin-bottom:
+
+        7px;
+
+}
+
+
+.polaroid-text p {
+
+    font-size:
+
+        0.79rem;
+
+
+    line-height:
+
+        1.5;
+
+
+    color:
+
+        #786466;
+
+}
+
+
+.carousel-button {
+
+    width:
+
+        42px;
+
+
+    height:
+
+        42px;
+
+
+    border:
+
+        none;
+
+
+    border-radius:
+
+        50%;
+
+
+    background:
+
+        #f1c3c9;
+
+
+    color:
+
+        #7a4e54;
+
+
+    font-size:
+
+        2rem;
+
+
+    cursor:
+
+        pointer;
+
+}
+
+
+.carousel-dots {
+
+    display:
+
+        flex;
+
+
+    gap:
+
+        7px;
+
+
+    justify-content:
+
+        center;
+
+
+    margin-top:
+
+        30px;
+
+}
+
+
+.dot {
+
+    width:
+
+        7px;
+
+
+    height:
+
+        7px;
+
+
+    border-radius:
+
+        50%;
+
+
+    background:
+
+        #ddb9bd;
+
+
+    transition:
+
+        0.25s;
+
+}
+
+
+.dot.active {
+
+    transform:
+
+        scale(1.5);
+
+
+    background:
+
+        #b96674;
+
+}
+
+
+.swipe-text {
+
+    margin-top:
+
+        15px;
+
+
+    font-size:
+
+        0.72rem;
+
+
+    color:
+
+        #a28b8d;
+
+}
+
+
+
+/* ====================================
+   WISH CARDS
+==================================== */
+
+.wish-cards {
+
+    width:
+
+        min(100%, 650px);
+
+
+    margin-top:
+
+        50px;
+
+
+    display:
+
+        grid;
+
+
+    grid-template-columns:
+
+        repeat(3, 1fr);
+
+
+    gap:
+
+        12px;
+
+}
+
+
+.wish-card {
+
+    height:
+
+        250px;
+
+
+    perspective:
+
+        1000px;
+
+
+    cursor:
+
+        pointer;
+
+}
+
+
+.wish-card-inner {
+
+    width:
+
+        100%;
+
+
+    height:
+
+        100%;
+
+
+    position:
+
+        relative;
+
+
+    transition:
+
+        transform 0.8s;
+
+
+    transform-style:
+
+        preserve-3d;
+
+}
+
+
+.wish-card.flipped
+.wish-card-inner {
+
+    transform:
+
+        rotateY(180deg);
+
+}
+
+
+.wish-front,
+.wish-back {
+
+    position:
+
+        absolute;
+
+
+    width:
+
+        100%;
+
+
+    height:
+
+        100%;
+
+
+    border-radius:
+
+        90px
+
+        90px
+
+        22px
+
+        22px;
+
+
+    display:
+
+        flex;
+
+
+    flex-direction:
+
+        column;
+
+
+    align-items:
+
+        center;
+
+
+    justify-content:
+
+        center;
+
+
+    backface-visibility:
+
+        hidden;
+
+
+    padding:
+
+        14px;
+
+
+    box-shadow:
+
+        0 10px 35px
+
+        rgba(
+            117,
+            75,
+            85,
+            0.12
+        );
+
+}
+
+
+.wish-front {
+
+    background:
+
+        #f6d7d9;
+
+}
+
+
+.wish-card:nth-child(2)
+.wish-front {
+
+    background:
+
+        #f9e0d3;
+
+}
+
+
+.wish-card:nth-child(3)
+.wish-front {
+
+    background:
+
+        #eee2cf;
+
+}
+
+
+.wish-front
+.flower {
+
+    font-size:
+
+        3.3rem;
+
+
+    margin-bottom:
+
+        20px;
+
+}
+
+
+.wish-front p {
+
+    font-size:
+
+        0.65rem;
+
+
+    letter-spacing:
+
+        2px;
+
+}
+
+
+.wish-back {
+
+    transform:
+
+        rotateY(180deg);
+
+
+    background:
+
+        #fff;
+
+
+    font-family:
+
+        "Cormorant Garamond",
+
+        serif;
+
+
+    line-height:
+
+        1.35;
+
+
+    font-size:
+
+        0.96rem;
+
+
+    color:
+
+        #7c535b;
+
+}
+
+
+
+/* ====================================
+   FLOWER POT
+==================================== */
+
+.flower-pot {
+
+    margin-top:
+
+        20px;
+
+}
+
+
+.stems {
+
+    color:
+
+        #789171;
+
+
+    font-size:
+
+        1.6rem;
+
+
+    line-height:
+
+        1;
+
+}
+
+
+.pot {
+
+    width:
+
+        100px;
+
+
+    background:
+
+        #db9b8e;
+
+
+    margin:
+
+        auto;
+
+
+    padding:
+
+        13px;
+
+
+    border-radius:
+
+        8px 8px 30px 30px;
+
+
+    color:
+
+        white;
+
+}
+
+
+
+/* ====================================
+   FINAL CARD
+==================================== */
+
+.final-locked {
+
+    opacity:
+
+        0.4;
+
+}
+
+
+.final-unlocked {
+
+    opacity:
+
+        1;
+
+}
+
+
+.letter-button {
+
+    margin-top:
+
+        40px;
+
+
+    border:
+
+        none;
+
+
+    background:
+
+        #c66b7a;
+
+
+    color:
+
+        white;
+
+
+    padding:
+
+        17px 30px;
+
+
+    border-radius:
+
+        50px;
+
+
+    letter-spacing:
+
+        1px;
+
+
+    font-size:
+
+        0.79rem;
+
+
+    cursor:
+
+        pointer;
+
+
+    box-shadow:
+
+        0 10px 30px
+
+        rgba(
+            164,
+            79,
+            95,
+            0.25
+        );
+
+
+    animation:
+
+        pulse 2s infinite;
+
+}
+
+
+@keyframes pulse {
+
+    0%,
+    100% {
+
+        transform:
+
+            scale(1);
+
+    }
+
+
+    50% {
+
+        transform:
+
+            scale(1.04);
+
+    }
+
+}
+
+
+
+/* ====================================
+   ENDING
+==================================== */
+
+.ending-section {
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            #ffe2e7,
+            transparent 35%
+        ),
+
+        #fffaf7 !important;
+
+}
+
+
+.ending-small {
+
+    margin-top:
+
+        24px;
+
+
+    line-height:
+
+        1.8;
+
+
+    color:
+
+        #8d7276;
+
+}
+
+
+
+/* ====================================
+   LETTER MODAL
+==================================== */
+
+.letter-modal {
+
+    position:
+
+        fixed;
+
+
+    inset:
+
+        0;
+
+
+    background:
+
+        rgba(
+            75,
+            48,
+            51,
+            0.62
+        );
+
+
+    backdrop-filter:
+
+        blur(7px);
+
+
+    z-index:
+
+        100;
+
+
+    padding:
+
+        25px;
+
+
+    display:
+
+        flex;
+
+
+    align-items:
+
+        center;
+
+
+    justify-content:
+
+        center;
+
+
+    opacity:
+
+        0;
+
+
+    visibility:
+
+        hidden;
+
+
+    transition:
+
+        0.4s;
+
+}
+
+
+.letter-modal.open {
+
+    opacity:
+
+        1;
+
+
+    visibility:
+
+        visible;
+
+}
+
+
+.letter-paper {
+
+    width:
+
+        min(100%, 580px);
+
+
+    max-height:
+
+        88vh;
+
+
+    overflow-y:
+
+        auto;
+
+
+    background:
+
+        #fff9f1;
+
+
+    border-radius:
+
+        12px;
+
+
+    padding:
+
+        55px
+
+        30px
+
+        45px;
+
+
+    text-align:
+
+        center;
+
+
+    position:
+
+        relative;
+
+
+    box-shadow:
+
+        0 25px 70px
+
+        rgba(
+            36,
+            17,
+            19,
+            0.32
+        );
+
+
+    transform:
+
+        translateY(40px)
+
+        scale(0.95);
+
+
+    transition:
+
+        transform 0.5s;
+
+}
+
+
+.letter-modal.open
+.letter-paper {
+
+    transform:
+
+        translateY(0)
+
+        scale(1);
+
+}
+
+
+.close-letter {
+
+    position:
+
+        absolute;
+
+
+    top:
+
+        15px;
+
+
+    right:
+
+        20px;
+
+
+    border:
+
+        none;
+
+
+    background:
+
+        transparent;
+
+
+    font-size:
+
+        2rem;
+
+
+    color:
+
+        #a45d68;
+
+
+    cursor:
+
+        pointer;
+
+}
+
+
+.personal-letter {
+
+    margin-top:
+
+        30px;
+
+
+    text-align:
+
+        left;
+
+
+    line-height:
+
+        1.9;
+
+
+    font-family:
+
+        "Cormorant Garamond",
+
+        serif;
+
+
+    font-size:
+
+        1.15rem;
+
+
+    color:
+
+        #654f51;
+
+}
+
+
+.big-heart {
+
+    font-family:
+
+        "Dancing Script",
+
+        cursive;
+
+
+    font-size:
+
+        4rem;
+
+
+    color:
+
+        #bf6374;
+
+
+    margin-top:
+
+        30px;
+
+}
+
+
+
+/* ====================================
+   CONFETTI
+==================================== */
+
+.confetti {
+
+    position:
+
+        fixed;
+
+
+    top:
+
+        -20px;
+
+
+    pointer-events:
+
+        none;
+
+
+    z-index:
+
+        200;
+
+
+    animation:
+
+        fall linear forwards;
+
+}
+
+
+@keyframes fall {
+
+    to {
+
+        transform:
+
+            translateY(110vh)
+
+            rotate(720deg);
+
+
+        opacity:
+
+            0;
+
+    }
+
+}
+
+
+
+/* ====================================
+   FOOTER
+==================================== */
+
+footer {
+
+    padding:
+
+        50px 20px;
+
+
+    text-align:
+
+        center;
+
+
+    background:
+
+        #f4dfe0;
+
+
+    color:
+
+        #a36870;
+
+
+    font-family:
+
+        "Dancing Script",
+
+        cursive;
+
+
+    font-size:
+
+        1.2rem;
+
+}
+
+
+
+/* ====================================
+   MOBILE
+==================================== */
+
+@media (max-width: 600px) {
+
+
+    .section {
+
+        padding:
+
+            85px 18px;
+
+
+        min-height:
+
+            auto;
+
+    }
+
+
+    .birthday-section {
+
+        min-height:
+
+            100svh;
+
+    }
+
+
+    .polaroid img {
+
+        height:
+
+            310px;
+
+    }
+
+
+    .carousel-button {
+
+        width:
+
+            34px;
+
+
+        height:
+
+            34px;
+
+
+        min-width:
+
+            34px;
+
+
+        font-size:
+
+            1.6rem;
+
+    }
+
+
+    .wish-cards {
+
+        gap:
+
+            8px;
+
+    }
+
+
+    .wish-card {
+
+        height:
+
+            230px;
+
+    }
+
+
+    .wish-front,
+    .wish-back {
+
+        padding:
+
+            9px;
+
+    }
+
+
+    .wish-back {
+
+        font-size:
+
+            0.82rem;
+
+    }
+
+
+    .wish-front
+    .flower {
+
+        font-size:
+
+            2.5rem;
+
+    }
+
+}
+
+
+
+/* REALLY SMALL PHONES */
+
+@media (max-width: 360px) {
+
+    .wish-cards {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+
+    .wish-card {
+
+        height:
+
+            220px;
+
+    }
+
+}
